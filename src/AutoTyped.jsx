@@ -11,7 +11,7 @@ const AutoTyped = () => {
         typeSpeed: 50,
         backSpeed: 40,
         loop: true,
-        loopCount: Infinity,
+        loopCount: 10,
       });
   
       return () => {

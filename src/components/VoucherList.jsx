@@ -2,7 +2,7 @@ import React from 'react'
 import { HiSearch } from 'react-icons/hi'
 import { HiComputerDesktop, HiPencil, HiPlus, HiTrash } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
-import Container from '../components/Container'
+import Container from './Container'
 
 const VoucherList = () => {
   return (
