@@ -77,7 +77,8 @@ const Product = () => {
             </tbody>) :
             (data.length === 0 ? (<p className='px-60 py-5 text-nowrap mx-auto'>There is no products</p>) : (data.map((product,index) => <ProductList product={product} index={index}  key={product.id}/>  )))  }
 
-          </table></div>
+          </table>
+          </div>
      </div>
         </Container>
     </section>

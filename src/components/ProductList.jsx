@@ -4,22 +4,10 @@ import { HiPencil, HiPlus, HiTrash } from 'react-icons/hi2'
 import { leapfrog } from 'ldrs'
 import { useSWRConfig } from 'swr'
 import { Link } from 'react-router-dom'
+import ShowDate from './ShowDate'
 
-leapfrog.register()
+leapfrog.register();
 const ProductList = ({product:{id,title,price,created_at},index}) => {
-
-  const currentDate = new Date(created_at).toLocaleDateString("en-US",Option={
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric' 
-  });
-  const currentTime = new Date(created_at).toLocaleTimeString("en-US",Option={
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true 
-  });
-
 
   const {mutate} = useSWRConfig();
   const [delLoading,setDelLoading] = useState(false);
@@ -47,7 +35,7 @@ const ProductList = ({product:{id,title,price,created_at},index}) => {
         {price}
         </td>
         <td className="px-6 py-4 flex flex-col">
-         <p>{currentDate} </p><p>{currentTime}</p>
+        <ShowDate created_at={created_at}/>
         </td>
         <td className="px-6 py-4 text-right">
           <div className="flex  justify-center items-center space-x-2">

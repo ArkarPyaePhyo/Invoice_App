@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HiSearch } from 'react-icons/hi'
 import { HiComputerDesktop, HiPencil, HiPlus, HiTrash } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
-import Container from './Container'
+import { leapfrog } from 'ldrs'
+import useSWR, { useSWRConfig } from 'swr'
+import ShowDate from './ShowDate'
+import toast, { Toaster } from 'react-hot-toast';
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+leapfrog.register();
 const VoucherList = () => {
+
+  const {data,error,isLoading} = useSWR(import.meta.env.VITE_API_URL+"/vouchers",fetcher);
+  const {mutate} = useSWRConfig();
+
+  const [isDeleting,setIsDeleting] = useState(null);
+  
+  
+  const deleteVoucher = async(id)=>{
+    
+    setIsDeleting(id);
+
+    await fetch(import.meta.env.VITE_API_URL+`/vouchers/${id}`,{
+      method: 'DELETE',
+    });
+    
+    mutate(import.meta.env.VITE_API_URL+"/vouchers");
+
+    toast.success("Voucher Deleted Successfully")
+  }
+
   return (
     <div className='mt-2'>
         <div className="flex justify-between flex-grow mb-2">
@@ -26,7 +51,7 @@ const VoucherList = () => {
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" className="px-6 py-3">
-          VOUCHER#
+          VOUCHER-ID
         </th>
         <th scope="col" className="px-6 py-3">
           NAME
@@ -43,27 +68,48 @@ const VoucherList = () => {
       </tr>
     </thead>
     <tbody>
-      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    {isLoading ? (
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th className="px-6 py-3">
+            <div className="h-4 bg-gray-200 rounded dark:bg-gray-600 animate-pulse w-6"></div>
+          </th>
+          <td className="px-6 py-3">
+            <div className="h-4 bg-gray-200 rounded dark:bg-gray-600 animate-pulse w-32"></div>
+          </td>
+          <td className="px-6 py-3">
+            <div className="h-4 bg-gray-200 rounded dark:bg-gray-600 animate-pulse w-24"></div>
+          </td>
+          <td className="px-6 py-3">
+            <div className="h-4 bg-gray-200 rounded dark:bg-gray-600 animate-pulse w-20"></div>
+          </td>
+          <td className="px-6 py-3">
+            <div className="h-4 bg-gray-200 rounded dark:bg-gray-600 animate-pulse w-12"></div>
+          </td>
+          </tr>
+            ) : (data.length === 0 ? (<tr ><td colSpan='5' className='text-center px-60 py-5 text-nowrap mx-auto'>There are no vouchers</td></tr>) : (data.map((voucher,index) => (<tr key={index}  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          #14124
+          {voucher.voucher_id}
         </th>
         <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          Kaung Kaung
+          {voucher.customer_name}
         </td>
         <td className="px-6 py-4">
-          kaungkaung@gmail.com
+        {voucher.customer_email} 
         </td>
-        <td className="px-6 py-4 flex flex-col ">
-         <p> 8 Sep 2024</p>
-         <p>10:00 AM </p>
+        <td className="px-6 py-4  ">
+        <ShowDate created_at={voucher.sale_date}/>
         </td>
         <td className="px-6 py-4 text-right">
           <div className="flex space-x-2">
-          <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline border-2 rounded-md border-blue-600  p-2"><HiPencil/></a>
-          <a href="#" className="font-medium text-red-500 dark:text-blue-500 hover:underline border-2 rounded-md border-blue-600  p-2"><HiTrash/></a>
+          <a onClick={() => deleteVoucher(voucher.id)}  className="font-medium text-red-500 dark:text-blue-500 hover:underline border-2 rounded-md border-blue-600  p-2">{isDeleting === voucher.id ? ((<l-leapfrog
+  size="20"
+  speed="2.5" 
+  color="black" 
+></l-leapfrog>)) : <HiTrash/>}</a>
           </div>
         </td>
-      </tr>
+      </tr>))))} 
+      
     </tbody>
   </table>
 </div>

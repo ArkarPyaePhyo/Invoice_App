@@ -22,7 +22,8 @@
     "react-router-dom": "^6.26.1",
     "sweetalert": "^2.1.2",
     "swr": "^2.2.5",
-    "typed.js": "^2.1.0"
+    "typed.js": "^2.1.0",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
