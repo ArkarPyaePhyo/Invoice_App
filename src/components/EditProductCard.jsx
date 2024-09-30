@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import useSWR from 'swr';
-import SkeletonLoader from './skeletonLoader';
+import SkeletonLoader from './SkeletonLoader';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
