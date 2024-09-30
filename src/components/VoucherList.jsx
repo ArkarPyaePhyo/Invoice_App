@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HiSearch } from 'react-icons/hi'
+import { HiInformationCircle, HiSearch } from 'react-icons/hi'
 import { HiComputerDesktop, HiPencil, HiPlus, HiTrash } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
 import { leapfrog } from 'ldrs'
@@ -101,6 +101,7 @@ const VoucherList = () => {
         </td>
         <td className="px-6 py-4 text-right">
           <div className="flex space-x-2">
+        <Link to={`/voucherDetails/${voucher.id}`} className="font-medium text-red-500 dark:text-blue-500 hover:underline border-2 rounded-md border-blue-600  p-2"><HiInformationCircle/></Link>
           <a onClick={() => deleteVoucher(voucher.id)}  className="font-medium text-red-500 dark:text-blue-500 hover:underline border-2 rounded-md border-blue-600  p-2">{isDeleting === voucher.id ? ((<l-leapfrog
   size="20"
   speed="2.5" 

@@ -41,7 +41,7 @@ const router = createBrowserRouter([
                 element: <Voucher/>
             },
             {
-                path: '/voucherDetails',
+                path: '/voucherDetails/:id',
                 element: <VoucherDetails/>
             },
         ],

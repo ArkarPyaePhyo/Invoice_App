@@ -24,14 +24,14 @@ const VoucherTableRow = ({record:{id,cost,quantity,product:{title,price}},index}
     <td className="px-6 py-4 td-counter">{index+1}</td>
     <th scope="row" className="record-name px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{title}</th>
     <td className="px-6 py-4 text-end record-price">{price}</td>
-    <td className="px-6 py-4 text-end">
-      <button onClick={decreaseQuantity} className="q-sub pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:opacity-100 -translate-x-6 group-hover:translate-x-0 duration-200 bg-blue-100 text-blue-600 p-1 rounded">
+    <td className="px-6 py-6 text-end flex justify-center items-center ">
+      <button onClick={decreaseQuantity} className="q-sub pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:opacity-100 -translate-x-6 group-hover:translate-x-0 duration-200 bg-blue-100 text-blue-600  rounded">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3 h-3 pointer-events-none">
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
         </svg>
       </button>
       <span className="record-q text-center w-5 inline-block">{quantity}</span>
-      <button onClick={increaseQuantity} className="q-add pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:opacity-100 translate-x-6 group-hover:translate-x-0 duration-200 bg-blue-100 text-blue-600 p-1 rounded">
+      <button onClick={increaseQuantity} className="q-add pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:opacity-100 translate-x-6 group-hover:translate-x-0 duration-200 bg-blue-100 text-blue-600  rounded">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3 h-3 pointer-events-none">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
