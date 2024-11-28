@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { ring } from 'ldrs'
+import { ring } from 'ldrs';
+import useCookie from 'react-use-cookie';
+import toast from 'react-hot-toast';
 
 ring.register();
 const NewProductCard = () => {
 
- const [submit,setSubmit] = useState(false);
+  const [token,setToken] = useCookie('my-token');
+  const [submit,setSubmit] = useState(false);
 
 
   const {
@@ -21,19 +24,28 @@ const NewProductCard = () => {
     
     setSubmit(true);
 
-    await fetch(import.meta.env.VITE_API_URL+"/products",{
+    const res = await fetch(import.meta.env.VITE_API_URL+"/products",{
       method : "POST",
       headers :{
         "Content-Type": "application/json",
+        "Authorization" : `Bearer ${token}`,
       },
-      body: JSON.stringify({title : data.product_name, price : data.price, created_at : new Date().toISOString()})
+      body: JSON.stringify({product_name : data.product_name, price : data.price, created_at : new Date().toISOString()})
     })
+
+    const json = await res.json();
+
+    if(res.status === 201){
+      toast.success(json.message);
+    }else{
+      toast.error(json.message)
+    }
 
     reset();
     setSubmit(false);
     
     if(data.return_page){
-      navigate("/product")
+      navigate("/dashboard/product")
     }
 
   };
@@ -47,12 +59,12 @@ const NewProductCard = () => {
         <div>
   <div className='mb-2'>
     <label htmlFor="product_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-    <input {...register('product_name',{required : true})} type="text" id="product_name" className={`${errors.product_name ? "focus:ring-red-500 focus:border-red-500 " : "focus:ring-blue-500 focus:border-blue-500 "} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} placeholder="Samsung A22 ..."  />
+    <input {...register('product_name',{required : true})} type="text" id="product_name" className={`${errors.product_name ? "focus:ring-red-500 focus:border-red-500 " : "focus:ring-blue-500 focus:border-blue-500 "} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}   />
     {errors.product_name && <p className='text-red-600 text-xs'>product name is required.</p>}
   </div>
   <div className='mb-2'>
     <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-    <input {...register('price',{required : true})} type="text" id="price" className={`${errors.price ? "focus:ring-red-500 focus:border-red-500 " : "focus:ring-blue-500 focus:border-blue-500 "} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} placeholder="90000"  />
+    <input {...register('price',{required : true})} type="text" id="price" className={`${errors.price ? "focus:ring-red-500 focus:border-red-500 " : "focus:ring-blue-500 focus:border-blue-500 "} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}   />
     {errors.price && <p className='text-red-600 text-xs'>price is required.</p>}
   </div>
 </div>

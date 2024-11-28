@@ -8,7 +8,7 @@ const AddNewProduct = () => {
   return (
     <section>
         <Container>
-            <Breadcrumb currentPageTitle={"AddNewProduct"} links={[{previous_title:"Product",path:"/product"}]} icons={<HiCircleStack className='size-4'/>}></Breadcrumb>
+            <Breadcrumb currentPageTitle={"AddNewProduct"} links={[{previous_title:"Product",path:"/dashboard/product"}]} icons={<HiCircleStack className='size-4'/>}></Breadcrumb>
             <NewProductCard/>
         </Container>
     </section>

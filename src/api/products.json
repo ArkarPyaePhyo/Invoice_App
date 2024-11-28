@@ -63,41 +63,82 @@
   ],
   "vouchers": [
     {
-      "voucher_id": "INV-202409302747",
-      "customer_name": "susu",
-      "customer_email": "su@gmail.com",
-      "sale_date": "2024-09-30",
+      "voucher_id": "INV-202410094656",
+      "customer_name": "kyaw kyaw",
+      "customer_email": "kyaw@gmail.com",
+      "sale_date": "2024-10-09",
       "all_correct": true,
+      "Link_to_vDetail": false,
       "records": [
         {
-          "id": 1727714694750,
+          "id": 1728440626595,
           "product": {
-            "title": "Smartwatch",
-            "price": "199.99",
-            "created_at": "2024-09-23T08:00:00.000Z",
-            "id": 10
+            "title": "Bluetooth Speaker",
+            "price": "45.75",
+            "created_at": "2024-09-25T19:43:50.264Z",
+            "id": 8
           },
-          "quantity": 2,
-          "cost": 399.98,
-          "create_at": "2024-09-30T16:44:54.750Z"
-        },
+          "quantity": "1",
+          "cost": 45.75,
+          "create_at": "2024-10-09T02:23:46.595Z"
+        }
+      ],
+      "total": 45.75,
+      "tax": 2.2875,
+      "netTotal": 48.0375,
+      "id": 1
+    },
+    {
+      "voucher_id": "INV-202410091867",
+      "customer_name": "susu",
+      "customer_email": "su@gmail.com",
+      "sale_date": "2024-10-09",
+      "all_correct": true,
+      "Link_to_vDetail": false,
+      "records": [
         {
-          "id": 1727714702065,
+          "id": 1728440721195,
+          "product": {
+            "title": "Laptop Backpack",
+            "price": "59.99",
+            "created_at": "2024-09-22T11:45:12.000Z",
+            "id": 9
+          },
+          "quantity": 3,
+          "cost": 179.97,
+          "create_at": "2024-10-09T02:25:21.195Z"
+        }
+      ],
+      "total": 179.97,
+      "tax": 8.9985,
+      "netTotal": 188.9685,
+      "id": 2
+    },
+    {
+      "voucher_id": "INV-202410098413",
+      "customer_name": "jjj",
+      "customer_email": "kyaw@gmail.com",
+      "sale_date": "2024-10-09",
+      "all_correct": true,
+      "Link_to_vDetail": false,
+      "records": [
+        {
+          "id": 1728440749248,
           "product": {
             "title": "Gaming Mouse",
             "price": "39.99",
             "created_at": "2024-09-25T09:00:00.000Z",
             "id": 12
           },
-          "quantity": 4,
-          "cost": 159.96,
-          "create_at": "2024-09-30T16:45:02.065Z"
+          "quantity": "6",
+          "cost": 239.94,
+          "create_at": "2024-10-09T02:25:49.248Z"
         }
       ],
-      "total": 559.94,
-      "tax": 27.997000000000003,
-      "netTotal": 587.937,
-      "id": 1
+      "total": 239.94,
+      "tax": 11.997,
+      "netTotal": 251.937,
+      "id": 3
     }
   ]
 }

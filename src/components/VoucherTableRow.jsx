@@ -1,7 +1,7 @@
 import React from 'react'
 import UseRecordStore from '../stores/UseRecordStore';
 
-const VoucherTableRow = ({record:{id,cost,quantity,product:{title,price}},index}) => {
+const VoucherTableRow = ({record:{product_id,cost,quantity,product:{product_name,price}},index}) => {
   
     const {deleteRecord,changeQuantity}=UseRecordStore();
 
@@ -11,18 +11,18 @@ const VoucherTableRow = ({record:{id,cost,quantity,product:{title,price}},index}
 
     const decreaseQuantity=()=>{
         if(quantity > 1){
-            changeQuantity(id,-1)
+            changeQuantity(product_id,-1)
         }
         
     }
     const increaseQuantity=()=>{
-        changeQuantity(id,1)
+        changeQuantity(product_id,1)
     }
 
     return (
     <tr className="group odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" >
     <td className="px-6 py-4 td-counter">{index+1}</td>
-    <th scope="row" className="record-name px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{title}</th>
+    <th scope="row" className="record-name px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{product_name}</th>
     <td className="px-6 py-4 text-end record-price">{price}</td>
     <td className="px-6 py-6 text-end flex justify-center items-center ">
       <button onClick={decreaseQuantity} className="q-sub pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:opacity-100 -translate-x-6 group-hover:translate-x-0 duration-200 bg-blue-100 text-blue-600  rounded">
